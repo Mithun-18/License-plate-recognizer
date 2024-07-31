@@ -1,9 +1,9 @@
 import cv2
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
+pytesseract.pytesseract.tesseract_cmd = 'C:/Users/Mithun/AppData/Local/Programs/Tesseract-OCR/tesseract'
 
 # Read the image file
-image = cv2.imread('car2.JPG')
+image = cv2.imread('car1.jpg')
 cv2.imshow("Original",image)
 # Convert to Grayscale Image
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -40,6 +40,7 @@ license_plate = cv2.bilateralFilter(license_plate, 11, 17, 17)
 (thresh, license_plate) = cv2.threshold(license_plate, 150, 180, cv2.THRESH_BINARY)
 
 #Text Recognition
+
 text = pytesseract.image_to_string(license_plate)
 #Draw License Plate and write the Text
 image = cv2.rectangle(image, (x,y), (x+w,y+h), (0,0,255), 3) 
@@ -49,3 +50,4 @@ print("License Plate :", text)
 
 cv2.imshow("License Plate Detection",image)
 cv2.waitKey(0)
+cv2.destroyAllWindows()
